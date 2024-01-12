@@ -1,0 +1,25 @@
+<div id="debug">
+  <ion-list>
+
+    <ion-item>
+      <ion-input label="password" type="password" [(ngModel)]="setupData.password" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="retype password" type="password" [(ngModel)]="setupData.retypePassword" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="NIP" type="number" placeholder="1234563218" [(ngModel)]="setupData.nip" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="REGON" type="number" placeholder="1234563218" [(ngModel)]="setupData.regon" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button expand="full" (click)="submitForm()">Wyślij</ion-button>
+    </ion-item>
+
+  </ion-list>
+</div>
