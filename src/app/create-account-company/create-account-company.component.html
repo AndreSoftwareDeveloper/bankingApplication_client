@@ -1,0 +1,184 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      CREATE AN ACCOUNT AS A COMPANY
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="height: 100%; --ion-safe-area-top: 0; --ion-safe-area-bottom: 0;">
+  <div id="signUpForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-select [(ngModel)]="signUpForm.customerType" (ngModelChange)="onCustomerTypeChange()" placeholder="Select a client type" required>
+          <ion-select-option value="indywidualny">Klient indywidualny</ion-select-option>
+          <ion-select-option value="firma">Firma</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Company name
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="company name" [(ngModel)]="signUpForm.companyName" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Company address
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Gdańsk" [(ngModel)]="signUpForm.birthPlace" required></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label class="label">
+          Address for correspondence
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="al. Grunwaldzka 238A" [(ngModel)]="signUpForm.address" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          NIP
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Kowalski" [(ngModel)]="signUpForm.lastName" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          REGON
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="date" [(ngModel)]="signUpForm.birthDate" required min="{{ '1910-01-01' }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Phone
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="number" placeholder="111222333" [(ngModel)]="signUpForm.phoneNumber" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Email
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="email" placeholder="example@example.com" [(ngModel)]="signUpForm.email" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          A copy of the current entry in the KRS.
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="01236549878" min="0001012341" [(ngModel)]="signUpForm.pesel" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Company agreement
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="ABC 112233" [(ngModel)]="signUpForm.idCardNumber" required></ion-input>
+      </ion-item>
+
+      <h2> Personal data of the company representative: </h2>
+
+      <ion-item>
+        <ion-label class="label">
+          First name
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Jan" [(ngModel)]="signUpForm.firstName" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Last name
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Kowalski" [(ngModel)]="signUpForm.lastName" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Birthdate
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="date" [(ngModel)]="signUpForm.birthDate" required min="{{ '1910-01-01' }}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Birthplace
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Gdańsk" [(ngModel)]="signUpForm.birthPlace" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Address
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="al. Grunwaldzka 238A" [(ngModel)]="signUpForm.address" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          PESEL
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="01236549878" min="0001012341" [(ngModel)]="signUpForm.pesel" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Phone
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="number" placeholder="111222333" [(ngModel)]="signUpForm.phoneNumber" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          Email
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="email" placeholder="example@example.com" [(ngModel)]="signUpForm.email" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          ID number
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="ABC 112233" [(ngModel)]="signUpForm.idCardNumber" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">
+          ID scan
+          <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="ABC 112233" [(ngModel)]="signUpForm.idCardNumber" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button expand="full" (click)="submitForm()"> Wyślij </ion-button>
+      </ion-item>
+
+    </ion-list>
+  </div>
+  <p>
+    <ion-text color="danger">*</ion-text> - required fields.
+  </p>
+</ion-content>

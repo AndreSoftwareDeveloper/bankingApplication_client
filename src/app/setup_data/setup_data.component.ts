@@ -25,31 +25,35 @@ export class SetupDataComponent implements OnInit {
     const password = this.setupData.password;
     const retypePassword = this.setupData.retypePassword;
     const nip = this.setupData.nip;
+    const regon = this.setupData.regon;
     
-    if (this.checkData(password, retypePassword, nip)) {
+    if (this.checkData(password, retypePassword, nip, regon)) {
 
-      this.apiService.putData(
+      this.apiService.patchData(
         this.verificationToken,
-        this.setupData.password,
-        this.setupData.nip,
-        this.setupData.regon).subscribe(
+        password,
+        nip,
+        regon).subscribe(
           (result) => {
-            console.log(result);
+            alert("The data has been set successfully.");
           },
-          (error) => {
-            console.error(error);
-          }
+          (error) => { }
       ); 
     }      
   }
 
-  checkData(password: string, retypePassword: string, nip: number): boolean {
+  checkData(password: string, retypePassword: string, nip: number, regon: number): boolean {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
 
-    if (nip < 1000000000 || nip > 9999999999) {
-      alert("NIP must be 10 digit value.")
+    if (nip < 1000000000 || nip > 9999999999) { //IF NIP ISN'T A 10-DIGIT NUMBER
+      alert("NIP must be a 10-digit value.")
       return false;
-    }      
+    }
+
+    if (!((regon >= 100000000 && regon <= 999999999) || (regon >= 10000000000000 && regon <= 99999999999999))) { //IF REGON ISN'T A 9 OR 14-DIGIT NUMBER
+      alert("REGON must be a 9 or 14-digit value.")
+      return false;
+    }
 
     if (password != retypePassword) {
       alert("Passwords must be the same.")

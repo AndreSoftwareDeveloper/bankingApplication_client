@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      TwójBank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">TwójBank</ion-title>
+    </ion-toolbar>
+  </ion-header> 
+
+  <div id="container">
+
+    <ion-row class="ion-margin-top">
+      <strong> LOG IN </strong>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" *ngIf="!showBackButton">
+      <ion-item>
+        <ion-input placeholder="Enter a customer number" [(ngModel)]="signInForm.customerNumber" required></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" *ngIf="showBackButton">
+      <ion-item>
+        <ion-input type="password" placeholder="Enter password" [(ngModel)]="signInForm.password" required></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" *ngIf="!showBackButton">
+      <ion-button expand="full" (click)="submitForm()">
+        NEXT
+      </ion-button>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" *ngIf="showBackButton">
+      <ion-button expand="full" (click)="checkPassword()">
+        NEXT
+      </ion-button>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" *ngIf="showBackButton">
+      <ion-button expand="full" href="">
+        BACK
+      </ion-button>
+    </ion-row>
+
+    <ion-row class="ion-margin-top">
+      <ion-button expand="full" href="create_account">
+        CREATE AN ACCOUNT
+      </ion-button>
+    </ion-row>
+
+    <ion-row class="ion-margin-top">
+      <ion-button expand="full">
+        <!-- todo link -->
+        UNLOCK ACCESS
+      </ion-button>
+    </ion-row>
+
+  </div>
+</ion-content>

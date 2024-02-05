@@ -2,19 +2,39 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SetupDataModule } from './setup_data/setup_data.module';
 import { SetupDataComponent } from './setup_data/setup_data.component';
+import { CreateAccountComponent } from './create_account/create_account.component';
+import { MyAccountComponent } from './my-account/my-account.component';
+import { CreateAccountCompanyComponent } from './create-account-company/create-account-company.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
+
   {
     path: 'set_up_data',
     component: SetupDataComponent
   },
+
+  {
+    path: 'create_account',
+    component: CreateAccountComponent
+  },
+
+  {
+    path: 'create_account_company',
+    component: CreateAccountCompanyComponent
+  },
+
+  {
+    path: 'my_account',
+    component: MyAccountComponent
+  },  
+
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   }
 ];
