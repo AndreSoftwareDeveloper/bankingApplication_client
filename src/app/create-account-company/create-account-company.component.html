@@ -30,7 +30,7 @@
           Company address
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="Gdańsk" [(ngModel)]="signUpForm.birthPlace" required></ion-input>
+        <ion-input placeholder="Gdańsk al. Grunwaldzka 238A" [(ngModel)]="signUpForm.companyAddress" required></ion-input>
       </ion-item>
 
 
@@ -39,7 +39,7 @@
           Address for correspondence
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="al. Grunwaldzka 238A" [(ngModel)]="signUpForm.address" required></ion-input>
+        <ion-input placeholder="Gdańsk al. Grunwaldzka 238A" [(ngModel)]="signUpForm.correspondenceAddress" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -47,7 +47,7 @@
           NIP
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="Kowalski" [(ngModel)]="signUpForm.lastName" required></ion-input>
+        <ion-input type="number" placeholder="1111111111" [(ngModel)]="signUpForm.nip" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -55,7 +55,7 @@
           REGON
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="date" [(ngModel)]="signUpForm.birthDate" required min="{{ '1910-01-01' }}"></ion-input>
+        <ion-input type="number"  placeholder="111111111" [(ngModel)]="signUpForm.regon" required min="{{ '1910-01-01' }}"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -63,7 +63,7 @@
           Phone
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="number" placeholder="111222333" [(ngModel)]="signUpForm.phoneNumber" required></ion-input>
+        <ion-input type="number" placeholder="111222333" [(ngModel)]="signUpForm.phone" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -79,7 +79,7 @@
           A copy of the current entry in the KRS.
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="01236549878" min="0001012341" [(ngModel)]="signUpForm.pesel" required></ion-input>
+        <ion-input type="file" (change)="onFileChange($event)" ></ion-input>
       </ion-item>
 
       <ion-item>
@@ -87,7 +87,7 @@
           Company agreement
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="ABC 112233" [(ngModel)]="signUpForm.idCardNumber" required></ion-input>
+        <ion-input  type="file" [(ngModel)]="signUpForm.companyAgreement" ></ion-input>
       </ion-item>
 
       <h2> Personal data of the company representative: </h2>
@@ -97,7 +97,7 @@
           First name
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="Jan" [(ngModel)]="signUpForm.firstName" required></ion-input>
+        <ion-input placeholder="Jan" [(ngModel)]="signUpForm.representativeFirstName" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -105,7 +105,7 @@
           Last name
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="Kowalski" [(ngModel)]="signUpForm.lastName" required></ion-input>
+        <ion-input placeholder="Kowalski" [(ngModel)]="signUpForm.representativeLastName" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -113,7 +113,7 @@
           Birthdate
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="date" [(ngModel)]="signUpForm.birthDate" required min="{{ '1910-01-01' }}"></ion-input>
+        <ion-input type="date" [(ngModel)]="signUpForm.representativeBirthDate" required min="{{ '1910-01-01' }}"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -121,7 +121,7 @@
           Birthplace
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="Gdańsk" [(ngModel)]="signUpForm.birthPlace" required></ion-input>
+        <ion-input placeholder="Gdańsk" [(ngModel)]="signUpForm.representativeBirthPlace" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -129,7 +129,7 @@
           Address
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="al. Grunwaldzka 238A" [(ngModel)]="signUpForm.address" required></ion-input>
+        <ion-input placeholder="Gdańsk al. Grunwaldzka 238A" [(ngModel)]="signUpForm.representativeAddress" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -137,7 +137,7 @@
           PESEL
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="01236549878" min="0001012341" [(ngModel)]="signUpForm.pesel" required></ion-input>
+        <ion-input placeholder="01236549878" min="0001012341" [(ngModel)]="signUpForm.representativePesel" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -145,7 +145,7 @@
           Phone
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="number" placeholder="111222333" [(ngModel)]="signUpForm.phoneNumber" required></ion-input>
+        <ion-input type="number" placeholder="111222333" [(ngModel)]="signUpForm.representativePhone" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -153,7 +153,7 @@
           Email
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="email" placeholder="example@example.com" [(ngModel)]="signUpForm.email" required></ion-input>
+        <ion-input type="email" placeholder="example@example.com" [(ngModel)]="signUpForm.representativeEmail" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -161,7 +161,7 @@
           ID number
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="ABC 112233" [(ngModel)]="signUpForm.idCardNumber" required></ion-input>
+        <ion-input placeholder="ABC 112233" [(ngModel)]="signUpForm.representativeIdNumber" required></ion-input>
       </ion-item>
 
       <ion-item>
@@ -169,7 +169,7 @@
           ID scan
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input placeholder="ABC 112233" [(ngModel)]="signUpForm.idCardNumber" required></ion-input>
+        <ion-input type="file" [(ngModel)]="signUpForm.representativeIdScan" ></ion-input>
       </ion-item>
 
       <ion-item>

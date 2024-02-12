@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +40,18 @@ export class ApiService {
 
         console.log(error);
         return error;
+      })
+    );
+  }
+
+  postJuridicalPersonData(formData: any, headers: HttpHeaders) {
+    return this.http.post('https://localhost:7045/api/JuridicalPerson', formData, { headers: headers }).pipe(
+      map((response) => {
+        console.log(response)
+        return response;
+      }),
+      catchError((error) => {
+        return throwError(error);
       })
     );
   }
