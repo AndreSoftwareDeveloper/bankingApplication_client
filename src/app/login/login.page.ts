@@ -49,11 +49,12 @@ export class LoginPage {
     this.customerNumber = this.signInForm.customerNumber;
 
     this.apiService.findCustomerNumber(this.customerNumber).subscribe(
-      (data) => {          //when server response is 200        
+      (data) => {   //when server response is 200        
         this.showBackButton = true;
         this.customer = data as Customer;
+        console.log(data);
       },
-      () => {     //when server response is 404
+      () => {       //when server response is 404
         alert("Enter a valid customer number.")
       }
     );

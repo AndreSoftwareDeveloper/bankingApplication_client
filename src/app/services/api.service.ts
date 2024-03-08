@@ -1,25 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, of, switchMap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private endpoint = 'https://localhost:7045/api/NaturalPerson';
+  private endpoint_naturalPerson = 'https://localhost:7045/api/NaturalPerson';
+  private endpoint_juridicalPerson = 'https://localhost:7045/api/JuridicalPerson';
 
   constructor(private http: HttpClient) { }
 
   getData() {
-    return this.http.get(this.endpoint);
+    return this.http.get(this.endpoint_naturalPerson);
   }
 
-  findCustomerNumber(customerNumber: number) {
-    return this.http.get(this.endpoint + "/customerNumber/" + customerNumber);
+  findCustomerNumber(customerNumber: number): Observable<any> {
+    const response_naturalPerson = this.http.get(this.endpoint_naturalPerson + "/customerNumber/" + customerNumber);
+
+    return this.checkResponseCode(response_naturalPerson).pipe(
+      switchMap((responseCode: number) => {
+        if (responseCode === 200) {
+          return response_naturalPerson;
+        } else {
+          return this.http.get(this.endpoint_juridicalPerson + "/customerNumber/" + customerNumber);
+        }
+      })
+    );
+  }
+
+  checkResponseCode(response: Observable<any>): Observable<number> {
+    return response.pipe(
+      map(() => 200),
+      catchError(() => of(404))
+    );
   }
 
   postData(data: any) {
-    return this.http.post(this.endpoint, data).pipe(
+    return this.http.post(this.endpoint_naturalPerson, data).pipe(
       map((response) => {
         console.log(response)
         return response;
@@ -45,7 +63,9 @@ export class ApiService {
   }
 
   postJuridicalPersonData(formData: any, headers: HttpHeaders) {
-    return this.http.post('https://localhost:7045/api/JuridicalPerson', formData, { headers: headers }).pipe(
+    return this.http.post('https://localhost:7045/api/JuridicalPerson', formData, {
+      headers: headers
+    }).pipe(
       map((response) => {
         console.log(response)
         return response;
@@ -64,7 +84,7 @@ export class ApiService {
       regon: +regon
     };
 
-    return this.http.patch(this.endpoint, updateData, {
+    return this.http.patch(this.endpoint_naturalPerson, updateData, {
       headers: { 'Content-Type': 'application/json' }
     });
   }

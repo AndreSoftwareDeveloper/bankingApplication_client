@@ -40,46 +40,56 @@ export class CreateAccountCompanyComponent implements OnInit {
 
   onCustomerTypeChange() {
     throw new Error('Method not implemented.');
-  }  
-
-  fileToByteArray(file: File): Promise<Uint8Array> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const arrayBuffer = reader.result as ArrayBuffer;
-        const uint8Array = new Uint8Array(arrayBuffer);
-        resolve(uint8Array);
-      };
-      reader.onerror = () => {
-        reject(new Error("Failed to read file"));
-      };
-      reader.readAsArrayBuffer(file);
-    });
   }
 
   entryKRS: number[] = [];
   companyAgreement: number[] = [];
   representativeIdScan: number[] = [];
 
-  onFileChange(event: any) {
+  async onFileChange(event: any, fieldName: string) {
     const selectedFile = event.target.files[0];
-    this.readFileAsByteArray(selectedFile);
+    try {
+      const fileAsByteArray = await this.readFileAsByteArray(selectedFile);
+
+      switch (fieldName) {
+        case 'entryKRS':
+          this.entryKRS = fileAsByteArray;
+          break;
+        case 'companyAgreement':
+          this.companyAgreement = fileAsByteArray;
+          break;
+        case 'representativeIdScan':
+          this.representativeIdScan = fileAsByteArray;
+          break;
+      }
+    } catch (error) {
+      console.error('Błąd odczytu pliku:', error);
+    }
   }
 
-  readFileAsByteArray(file: File) {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      if (event.target) {
-        const arrayBuffer = event.target.result as ArrayBuffer;
-        const uintArray = new Uint8Array(arrayBuffer);
-        const byteArray: number[] = [];
-        uintArray.forEach((value) => {
-          byteArray.push(value);
-        });
-        this.entryKRS = byteArray;
-      }
-    };    
-    reader.readAsArrayBuffer(file);
+  readFileAsByteArray(file: File): Promise<number[]> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target) {
+          const arrayBuffer = event.target.result as ArrayBuffer;
+          const uintArray = new Uint8Array(arrayBuffer);
+          const byteArray: number[] = [];
+
+          uintArray.forEach((value) => {
+            byteArray.push(value);
+          });
+
+          resolve(byteArray);
+        }
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
   }
 
   submitForm() {
@@ -103,17 +113,17 @@ export class CreateAccountCompanyComponent implements OnInit {
     formData.append('representativeEmail', this.signUpForm.representativeEmail);
     formData.append('representativeIdNumber', this.signUpForm.representativeIdNumber);
     formData.append('representativeIdScan', new Blob([new Uint8Array(this.representativeIdScan)], { type: 'application/octet-stream' }));
-
-    console.log(this.entryKRS);
-
+    
     const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
+    headers.set('Content-Type', 'multipart/form-data');
 
     this.apiService.postJuridicalPersonData(formData, headers).subscribe(
       () => {
         alert("Account has been successfully created. Follow instructions in email.")
       },
-      (error) => { console.log(error) }
+      (error) => {
+        alert("An error occured while creating an account:\n" + error);
+      }
     );
   }
 }  
