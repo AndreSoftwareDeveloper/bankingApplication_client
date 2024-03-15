@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { NaturalPerson } from '../NaturalPerson';
 
 @Component({
-  standalone: true, //redundant?
-  imports: [IonicModule, FormsModule],
   selector: 'create_account',
   templateUrl: './create_account.component.html',
   styleUrls: ['./create_account.component.scss'],

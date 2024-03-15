@@ -10,9 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { SetupDataModule } from './setup_data/setup_data.module';
 import { CreateAccountCompanyComponent } from './create-account-company/create-account-company.component';
+import { MyAccountComponent } from './my-account/my-account.component';
+import { CreateAccountComponent } from './create_account/create_account.component';
+import { DomesticTransferComponent } from './domestic-transfer/domestic-transfer.component';
 
 @NgModule({
-  declarations: [AppComponent, CreateAccountCompanyComponent],
+  declarations: [AppComponent, CreateAccountComponent, CreateAccountCompanyComponent, MyAccountComponent, DomesticTransferComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, SetupDataModule, FormsModule],
   providers: [
     {

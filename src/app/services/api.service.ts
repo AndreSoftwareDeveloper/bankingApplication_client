@@ -88,4 +88,9 @@ export class ApiService {
       headers: { 'Content-Type': 'application/json' }
     });
   }
+
+  appendToTransactionsHistory(transaction: any) {
+    const endpoint = 'https://localhost:7045/api/Account';    
+    return this.http.put(endpoint, transaction);
+  }
 }
