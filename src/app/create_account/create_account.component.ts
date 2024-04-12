@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { NavController } from '@ionic/angular';
 import { NaturalPerson } from '../NaturalPerson';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'create_account',
@@ -60,10 +59,10 @@ export class CreateAccountComponent implements OnInit {
       !this.signUpForm.idCardNumber ||
       !this.signUpForm.phoneNumber ||
       !this.signUpForm.email) {
-        alert("Fill all required fields.")
-        return;
-      }
-        
+      alert("Fill all required fields.")
+      return;
+    }
+
     const birthDate = new Date(this.signUpForm.birthDate);
     const minDate = new Date('1910-01-01');
     const maxDate = new Date();
@@ -80,36 +79,26 @@ export class CreateAccountComponent implements OnInit {
       return;
     }
 
-    const data = {
-      "firstName": this.signUpForm.firstName,
-      "lastName": this.signUpForm.lastName,
-      "birthDate": 
-      {
-        "year": birthDate.getFullYear(),
-        "month": birthDate.getMonth() + 1,
-        "day": birthDate.getDate()
-      },
-      "birthPlace": this.signUpForm.birthPlace,
-      "address": this.signUpForm.address,
-      "pesel": this.signUpForm.pesel,
-      "idCardNumber": this.signUpForm.idCardNumber,
-      "phoneNumber": this.signUpForm.phoneNumber,
-      "email": this.signUpForm.email,
-      "password": "temporary_password"
-    };
+    let formData = new FormData();
+    formData.append('firstName', this.signUpForm.firstName);
+    formData.append('lastName', this.signUpForm.lastName);
+    formData.append('birthDate', this.signUpForm.birthDate);
+    formData.append('birthPlace', this.signUpForm.birthPlace);
+    formData.append('address', this.signUpForm.address);
+    formData.append('pesel', this.signUpForm.pesel);
+    formData.append('idCardNumber', this.signUpForm.idCardNumber);
+    formData.append('phoneNumber', this.signUpForm.phoneNumber);
+    formData.append('email', this.signUpForm.email);
+    formData.append('password', 'temporary_password');
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    this.apiService.postNaturalPerson(data, headers).subscribe(
+    this.apiService.postNaturalPerson(formData).subscribe(
       () => {
         alert("Account has been successfully created. Follow instructions in email.")
       },
       (error) => {
         alert("An error occured while creating an account:\n" + error);
       }
-    );    
+    );
   }
 
   onCustomerTypeChange() {

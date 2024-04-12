@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, of, switchMap, throwError } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,6 @@ import { Observable, catchError, map, of, switchMap, throwError } from 'rxjs';
 export class ApiService {
   private endpoint_naturalPerson = 'https://localhost:7045/api/NaturalPerson';
   private endpoint_juridicalPerson = 'https://localhost:7045/api/JuridicalPerson';
-
   constructor(private http: HttpClient) { }
 
   getData() {
@@ -20,11 +19,10 @@ export class ApiService {
 
     return this.checkResponseCode(response_naturalPerson).pipe(
       switchMap((responseCode: number) => {
-        if (responseCode === 200) {
+        if (responseCode === 200)
           return response_naturalPerson;
-        } else {
-          return this.http.get(this.endpoint_juridicalPerson + "/customerNumber/" + customerNumber);
-        }
+        else
+          return this.http.get(this.endpoint_juridicalPerson + "/customerNumber/" + customerNumber);        
       })
     );
   }
@@ -36,20 +34,26 @@ export class ApiService {
     );
   }
 
-  postNaturalPerson(formData: any, headers: HttpHeaders) {
-    return this.http.post('https://localhost:7045/api/NaturalPerson', formData, {
-      headers: headers
-    }).pipe(
+  postNaturalPerson(formData: object) {
+    return this.http.post(this.endpoint_naturalPerson, formData).pipe(
       map((response) => {
         return response;
       }),
       catchError((error) => {
-        return throwError(error);
+        if (error.error === 'phone')
+          alert('Enter a valid phone number.')
+        else if (error.error === 'email')
+          alert('Enter a valid phone email.')        
+        else if (error.error === 'idCard')
+          alert('Enter a valid phone ID card number.')        
+        else if (error.error === 'pesel')
+          alert('Enter a valid PESEL.')
+        return error;
       })
     );
   }
 
-  postJuridicalPerson(formData: any, headers: HttpHeaders) {
+  postJuridicalPerson(formData: object, headers: HttpHeaders) {
     return this.http.post('https://localhost:7045/api/JuridicalPerson', formData, {
       headers: headers
     }).pipe(
@@ -75,7 +79,7 @@ export class ApiService {
     });
   }
 
-  appendToTransactionsHistory(transaction: object) {
+  appendToTransactionsHistory(transaction: any) {
     const endpoint = 'https://localhost:7045/api/Account';    
     return this.http.put(endpoint, transaction);
   }

@@ -122,7 +122,7 @@ export class CreateAccountCompanyComponent implements OnInit {
         alert("Account has been successfully created. Follow instructions in email.")
       },
       (error) => {
-        alert("An error occured while creating an account:\n" + error);
+        alert("An error occured while creating an account:\n" + JSON.stringify(error));
       }
     );
   }
