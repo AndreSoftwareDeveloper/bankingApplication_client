@@ -117,7 +117,7 @@ export class CreateAccountCompanyComponent implements OnInit {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'multipart/form-data');
 
-    this.apiService.postJuridicalPersonData(formData, headers).subscribe(
+    this.apiService.postJuridicalPerson(formData, headers).subscribe(
       () => {
         alert("Account has been successfully created. Follow instructions in email.")
       },

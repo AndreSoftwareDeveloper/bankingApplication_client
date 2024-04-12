@@ -23,14 +23,14 @@ export class MyAccountComponent implements OnInit {
     });
   }
 
-  async openModal() {
+  async createDomesticTransfer() {
     const modal = await this.modalController.create({
       component: DomesticTransferComponent
     });
     await modal.present();
     const { data } = await modal.onDidDismiss();
     const transaction = {
-      Date: `${data.Date.year}-${data.Date.month}-${data.Date.day}`,
+      Date: `${data.date.year}-${data.date.month}-${data.date.day}`,
       Amount: data.amount,
       Currency: 'PLN',
       InitiatorAccountNumber: '000000-0200001198', //TODO
@@ -44,6 +44,11 @@ export class MyAccountComponent implements OnInit {
       ChargesInstructions: 2, //TODO
       TransactionDetails: data.title
     };
-    this.apiService.appendToTransactionsHistory(transaction);
+    this.apiService.appendToTransactionsHistory(transaction)
+      .subscribe((response) => {
+        console.log('Odpowiedź z API:', response);
+      }, (error) => {
+        console.error('Błąd w API:', error);
+      });
   }
 }

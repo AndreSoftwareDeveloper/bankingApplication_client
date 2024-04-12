@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { IonicModule, NavController } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 import { NaturalPerson } from '../NaturalPerson';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'create_account',
@@ -97,18 +97,24 @@ export class CreateAccountComponent implements OnInit {
       "email": this.signUpForm.email,
       "password": "temporary_password"
     };
-    
-    this.apiService.postData(data).subscribe(
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    this.apiService.postNaturalPerson(data, headers).subscribe(
       () => {
         alert("Account has been successfully created. Follow instructions in email.")
       },
-      () => { }
+      (error) => {
+        alert("An error occured while creating an account:\n" + error);
+      }
     );    
   }
 
   onCustomerTypeChange() {
     if (this.signUpForm.customerType === 'firma') {
-      window.location.href = 'https://www.google.com';
+      window.location.href = 'create_account_company';
     }
   }
 

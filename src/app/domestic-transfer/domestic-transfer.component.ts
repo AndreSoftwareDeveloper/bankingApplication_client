@@ -21,7 +21,6 @@ export class DomesticTransferComponent implements OnInit {
     }
 
     submitForm() {
-      console.log(this.formData);
       this.modalController.dismiss(this.formData);
     }
 
