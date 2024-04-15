@@ -93,7 +93,7 @@ export class CreateAccountCompanyComponent implements OnInit {
   }
 
   submitForm() {
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('companyName', this.signUpForm.companyName);
     formData.append('companyAddress', this.signUpForm.companyAddress);
     formData.append('correspondenceAddress', this.signUpForm.correspondenceAddress);

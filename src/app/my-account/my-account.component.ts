@@ -29,22 +29,23 @@ export class MyAccountComponent implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onDidDismiss();
-    const transaction = {
-      Date: `${data.date.year}-${data.date.month}-${data.date.day}`,
-      Amount: data.amount,
-      Currency: 'PLN',
-      InitiatorAccountNumber: '000000-0200001198', //TODO
-      ReceiverBankCode: 3060, //TODO
-      ReceiverBankCountry: 'PL',
-      ContractorAccountNumber: data.receiverAccountNumber,
-      BeneficiaryData: data.receiverName,
-      InitiatorReferences: 'V0123456789/S0123456789/K0123456789', //TODO
-      BeneficiaryCountry: 'PL',
-      ChargesAccount: '', //TODO
-      ChargesInstructions: 2, //TODO
-      TransactionDetails: data.title
-    };
-    this.apiService.appendToTransactionsHistory(transaction)
+
+    var transactionData = new FormData();
+    transactionData.append("Date", new Date(2022, 3, 15).toLocaleDateString()); //TODO
+    transactionData.append("Amount", data.amount);
+    transactionData.append("Currency", 'PLN');
+    transactionData.append("InitiatorAccountNumber", '000000-0200001198');
+    transactionData.append("ReceiverBankCode", '3060');
+    transactionData.append("ReceiverBankCountry", 'PL');
+    transactionData.append("ContractorAccountNumber", data.receiverAccountNumber);
+    transactionData.append("BeneficiaryData", data.receiverName);
+    transactionData.append("InitiatorReferences", 'V0123456789/S0123456789/K0123456789');
+    transactionData.append("BeneficiaryCountry", 'PL');
+    transactionData.append("ChargesAccount", '44');
+    transactionData.append("ChargesInstructions", '2');
+    transactionData.append("TransactionDetails", data.title);
+
+    this.apiService.appendToTransactionsHistory(transactionData)
       .subscribe((response) => {
         console.log('Odpowiedź z API:', response);
       }, (error) => {
