@@ -1,7 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { NavController } from '@ionic/angular';
 import { NaturalPerson } from '../NaturalPerson';
+import { DatePipe } from '@angular/common';
+
+interface SignUpForm {
+  firstName: string;
+  lastName: string;
+  birthDate: Date | null;
+  birthPlace: string;
+  address: string;
+  pesel: string;
+  idCardNumber: string;
+  phoneNumber: string;
+  email: string;
+  customerType: string;
+}
 
 @Component({
   selector: 'create_account',
@@ -11,19 +24,14 @@ import { NaturalPerson } from '../NaturalPerson';
 export class CreateAccountComponent implements OnInit {
   responseData: string | undefined;
   errorString: string | undefined;
-  signUpForm: any;
+  signUpForm: SignUpForm;
   naturalPerson: NaturalPerson | undefined;
 
-  constructor(private apiService: ApiService, private navCtrl: NavController) {
+  constructor(private apiService: ApiService, private datePipe: DatePipe) {
     this.signUpForm = {
       firstName: '',
       lastName: '',
-      birthDate:
-      {
-        year: null,
-        month: null,
-        day: null
-      },
+      birthDate: null,
       birthPlace: '',
       address: '',
       pesel: '',
@@ -82,7 +90,7 @@ export class CreateAccountComponent implements OnInit {
     let formData = new FormData();
     formData.append('firstName', this.signUpForm.firstName);
     formData.append('lastName', this.signUpForm.lastName);
-    formData.append('birthDate', this.signUpForm.birthDate);
+    formData.append('birthDate', this.datePipe.transform(this.signUpForm.birthDate, 'yyyy-MM-dd')!);
     formData.append('birthPlace', this.signUpForm.birthPlace);
     formData.append('address', this.signUpForm.address);
     formData.append('pesel', this.signUpForm.pesel);

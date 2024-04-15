@@ -13,6 +13,7 @@ import { CreateAccountCompanyComponent } from './create-account-company/create-a
 import { MyAccountComponent } from './my-account/my-account.component';
 import { CreateAccountComponent } from './create_account/create_account.component';
 import { DomesticTransferComponent } from './domestic-transfer/domestic-transfer.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, CreateAccountComponent, CreateAccountCompanyComponent, MyAccountComponent, DomesticTransferComponent],
@@ -23,6 +24,7 @@ import { DomesticTransferComponent } from './domestic-transfer/domestic-transfer
       useClass: IonicRouteStrategy
     },
     ApiService,
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })
