@@ -9,7 +9,7 @@ import { NaturalPerson } from '../NaturalPerson';
   styleUrls: ['./create_account.component.scss'],
 })
 export class CreateAccountComponent implements OnInit {
-  responseData: any;
+  responseData: string | undefined;
   errorString: string | undefined;
   signUpForm: any;
   naturalPerson: NaturalPerson | undefined;
@@ -96,7 +96,7 @@ export class CreateAccountComponent implements OnInit {
         alert("Account has been successfully created. Follow instructions in email.")
       },
       (error) => {
-        alert("An error occured while creating an account:\n" + error);
+        alert("An error occured while creating an account:\n" + JSON.stringify(error));
       }
     );
   }
@@ -106,5 +106,4 @@ export class CreateAccountComponent implements OnInit {
       window.location.href = 'create_account_company';
     }
   }
-
 }

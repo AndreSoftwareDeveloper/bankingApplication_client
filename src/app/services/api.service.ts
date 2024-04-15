@@ -41,14 +41,14 @@ export class ApiService {
       }),
       catchError((error) => {
         if (error.error === 'phone')
-          alert('Enter a valid phone number.')
+          error = 'This phone number already exists.';
         else if (error.error === 'email')
-          alert('Enter a valid phone email.')        
+          error = 'This email already exists.';
         else if (error.error === 'idCard')
-          alert('Enter a valid phone ID card number.')        
+          error = 'This ID card number already exists.';
         else if (error.error === 'pesel')
-          alert('Enter a valid PESEL.')
-        return error;
+          error = 'This PESEL already exists.'                  
+        return throwError(error);
       })
     );
   }
