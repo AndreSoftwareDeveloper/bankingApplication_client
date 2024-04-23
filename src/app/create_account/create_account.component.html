@@ -19,7 +19,7 @@
 
     <ion-item>
       <ion-label class="label">
-        First name
+        First name:
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input placeholder="Jan" [(ngModel)]="signUpForm.firstName" required></ion-input>
@@ -27,7 +27,7 @@
 
     <ion-item>
       <ion-label class="label">
-        Last name
+        Last name:
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input placeholder="Kowalski" [(ngModel)]="signUpForm.lastName" required></ion-input>
@@ -35,7 +35,7 @@
 
     <ion-item>
       <ion-label class="label">
-        Birthdate
+        Birthdate:
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input type="date" [(ngModel)]="signUpForm.birthDate" required min="{{ '1910-01-01' }}"></ion-input>
@@ -43,7 +43,7 @@
 
     <ion-item>
       <ion-label class="label">
-        Birthplace
+        Birthplace:
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input placeholder="Gdańsk" [(ngModel)]="signUpForm.birthPlace" required></ion-input>
@@ -52,7 +52,7 @@
 
     <ion-item>
       <ion-label class="label">
-        Address
+        Address:
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input placeholder="al. Grunwaldzka 238A" [(ngModel)]="signUpForm.address" required></ion-input>
@@ -60,7 +60,7 @@
 
     <ion-item>
       <ion-label class="label">
-        PESEL
+        PESEL:
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input placeholder="01236549878" min="0001012341" [(ngModel)]="signUpForm.pesel" required></ion-input>
@@ -68,7 +68,7 @@
 
     <ion-item>
       <ion-label class="label">
-        ID number
+        ID number:
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input placeholder="ABC 112233" [(ngModel)]="signUpForm.idCardNumber" required></ion-input>
@@ -76,7 +76,7 @@
 
     <ion-item>
       <ion-label class="label">
-        Phone
+        Phone: +48
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input type="number" placeholder="111222333" [(ngModel)]="signUpForm.phoneNumber" required></ion-input>
@@ -84,7 +84,7 @@
 
     <ion-item>
       <ion-label class="label">
-        Email
+        Email:
         <ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input type="email" placeholder="example@example.com" [(ngModel)]="signUpForm.email" required></ion-input>
