@@ -110,8 +110,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onCustomerTypeChange() {
-    if (this.signUpForm.customerType === 'firma') {
-      window.location.href = 'create_account_company';
-    }
+    if (this.signUpForm.customerType === 'firma')
+      window.location.href = 'create_account_company';    
   }
 }

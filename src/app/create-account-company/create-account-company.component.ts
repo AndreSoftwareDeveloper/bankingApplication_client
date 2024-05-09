@@ -39,7 +39,8 @@ export class CreateAccountCompanyComponent implements OnInit {
   ngOnInit(): void { }
 
   onCustomerTypeChange() {
-    throw new Error('Method not implemented.');
+    if (this.signUpForm.customerType === 'indywidualny')
+      window.location.href = 'create_account';
   }
 
   entryKRS: number[] = [];

@@ -35,20 +35,21 @@ export class ApiService {
   }
 
   postNaturalPerson(formData: object) {
+    let errorMessage: string = "Internal server error.";
     return this.http.post(this.endpoint_naturalPerson, formData).pipe(
       map((response) => {
         return response;
       }),
-      catchError((error) => {
-        if (error.error === 'phone')
-          error = 'This phone number already exists.';
-        else if (error.error === 'email')
-          error = 'This email already exists.';
-        else if (error.error === 'idCard')
-          error = 'This ID card number already exists.';
-        else if (error.error === 'pesel')
-          error = 'This PESEL already exists.'                  
-        return throwError(error);
+      catchError((httpError) => {
+        if (httpError.error === 'phone')
+          errorMessage = 'This phone number already exists.';
+        else if (httpError.error === 'email')
+          errorMessage = 'This email already exists.';
+        else if (httpError.error === 'idCard')
+          errorMessage = 'This ID card number already exists.';
+        else if (httpError.error === 'pesel')
+          errorMessage = 'This PESEL already exists.'
+        return throwError(errorMessage);
       })
     );
   }
