@@ -43,26 +43,46 @@ export class ApiService {
       catchError((httpError) => {
         if (httpError.error === 'phone')
           errorMessage = 'This phone number already exists.';
+
         else if (httpError.error === 'email')
           errorMessage = 'This email already exists.';
+
         else if (httpError.error === 'idCard')
           errorMessage = 'This ID card number already exists.';
+
         else if (httpError.error === 'pesel')
           errorMessage = 'This PESEL already exists.'
+
         return throwError(errorMessage);
       })
     );
   }
 
   postJuridicalPerson(formData: object, headers: HttpHeaders) {
+    let errorMessage: string = "Internal server error.";
     return this.http.post('https://localhost:7045/api/JuridicalPerson', formData, {
       headers: headers
     }).pipe(
       map((response) => {
         return response;
       }),
-      catchError((error) => {
-        return throwError(error);
+      catchError((httpError) => {
+        if (httpError.error === 'email')
+          errorMessage = 'This email is already being in used.';
+
+        else if (httpError.error === 'company name')
+          errorMessage = 'This company name already exists.';
+
+        else if (httpError.error === 'phone')
+          errorMessage = 'This phone number is already being in used.';
+
+        else if (httpError.error === 'regon')
+          errorMessage = 'This REGON already exists.';
+
+        else if (httpError.error === 'NIP')
+          errorMessage = 'This NIP already exists.';
+
+        return throwError(errorMessage);
       })
     );
   }
