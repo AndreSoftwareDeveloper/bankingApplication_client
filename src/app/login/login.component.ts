@@ -21,11 +21,11 @@ interface Customer {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'login.page.html',
-  styleUrls: ['login.page.scss'],
+  selector: 'app-login',
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.scss'],
 })
-export class LoginPage {
+export class LoginComponent {
   signInForm: any;
   customerNumber: any;
   showBackButton: boolean = false;

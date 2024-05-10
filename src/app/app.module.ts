@@ -14,9 +14,10 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { CreateAccountComponent } from './create_account/create_account.component';
 import { DomesticTransferComponent } from './domestic-transfer/domestic-transfer.component';
 import { DatePipe } from '@angular/common';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, CreateAccountComponent, CreateAccountCompanyComponent, MyAccountComponent, DomesticTransferComponent],
+  declarations: [AppComponent, CreateAccountComponent, CreateAccountCompanyComponent, MyAccountComponent, DomesticTransferComponent, LoginComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, SetupDataModule, FormsModule],
   providers: [
     {

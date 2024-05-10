@@ -5,11 +5,12 @@ import { SetupDataComponent } from './setup_data/setup_data.component';
 import { CreateAccountComponent } from './create_account/create_account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { CreateAccountCompanyComponent } from './create-account-company/create-account-company.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+    component: LoginComponent
   },
 
   {
