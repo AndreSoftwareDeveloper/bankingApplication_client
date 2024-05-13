@@ -107,8 +107,6 @@ export class CreateAccountCompanyComponent implements OnInit {
       !this.signUpForm.regon ||
       !this.signUpForm.phone ||
       !this.signUpForm.email ||
-      !this.signUpForm.krsCopy ||
-      !this.signUpForm.companyAgreement ||
       !this.signUpForm.representativeFirstName ||
       !this.signUpForm.representativeLastName ||
       !this.signUpForm.representativeBirthDate ||
@@ -117,8 +115,7 @@ export class CreateAccountCompanyComponent implements OnInit {
       !this.signUpForm.representativePesel ||
       !this.signUpForm.representativePhone ||
       !this.signUpForm.representativeEmail ||
-      !this.signUpForm.representativeIdNumber ||
-      !this.signUpForm.representativeIdScan) {
+      !this.signUpForm.representativeIdNumber) {
       alert("Fill all required fields.")
       return;
     }
