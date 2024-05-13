@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { ModalController } from '@ionic/angular';
 import { DomesticTransferComponent } from '../domestic-transfer/domestic-transfer.component';
+import { NaturalPerson } from '../models/NaturalPerson';
 
 @Component({
   selector: 'app-my-account',
@@ -10,7 +11,7 @@ import { DomesticTransferComponent } from '../domestic-transfer/domestic-transfe
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent implements OnInit {
-  customer: any;
+  customer: NaturalPerson | undefined;
 
   constructor(public apiService: ApiService, //I'm not sure it is ok to be public for stuff like that
     private activatedRoute: ActivatedRoute,
@@ -19,7 +20,8 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
       if (window.history.state.customer) 
-        this.customer = window.history.state.customer;      
+        this.customer = window.history.state.customer;
+        console.log(this.customer)
     });
   }
 

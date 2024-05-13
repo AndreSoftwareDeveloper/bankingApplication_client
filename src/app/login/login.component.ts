@@ -20,22 +20,28 @@ interface Customer {
   verificationToken: number;
 }
 
+interface SignInForm {
+  customerNumber: number | null;
+  password: string;
+}
+
+
 @Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.scss'],
 })
 export class LoginComponent {
-  signInForm: any;
-  customerNumber: any;
+  signInForm: SignInForm;
+  customerNumber: number | null = null;
   showBackButton: boolean = false;
-  password: any;
+  password: string | null = null;
   customer!: Customer;
 
 
   constructor(private apiService: ApiService, private router: Router) {
     this.signInForm = {
-      customerNumber: '',
+      customerNumber: null,
       password: ''
     };
   }
@@ -46,7 +52,7 @@ export class LoginComponent {
       return;
     }
 
-    this.customerNumber = this.signInForm.customerNumber;
+    this.customerNumber = this.signInForm.customerNumber as number;
 
     this.apiService.findCustomerNumber(this.customerNumber).subscribe(
       (data) => {   //when server response is 200        

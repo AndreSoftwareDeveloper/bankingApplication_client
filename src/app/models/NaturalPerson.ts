@@ -6,6 +6,11 @@ export class NaturalPerson {
   public address: string | undefined;
   public pesel: string | undefined;
   public idCardNumber: string | undefined;
+  public phone: number | undefined;
+  public email: string | undefined;
+  public nip: number | undefined;
+  public regon: number | undefined;
+  public customerNumber: number | undefined;
 
   constructor(
     firstName: string | undefined,

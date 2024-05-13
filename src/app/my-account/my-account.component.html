@@ -13,12 +13,12 @@
   </nav>
 
   <section>
-    <h2>Welcome, {{ customer.firstName }} {{ customer.lastName }}!</h2>
+    <h2>Welcome, {{ customer?.firstName }} {{ customer?.lastName }}!</h2>
     <p>Your account balance: PLN 2189,00</p>
 
     <p>
       Your customer number:
-      {{ customer.customerNumber }}
+      {{ customer?.customerNumber }}
     </p>
 
     <ion-item>

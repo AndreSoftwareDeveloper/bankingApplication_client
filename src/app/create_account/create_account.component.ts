@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { NaturalPerson } from '../NaturalPerson';
 import { DatePipe } from '@angular/common';
+import { NaturalPerson } from '../models/NaturalPerson';
 
 interface SignUpForm {
   firstName: string;
