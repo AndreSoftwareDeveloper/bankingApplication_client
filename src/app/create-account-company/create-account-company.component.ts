@@ -69,7 +69,7 @@ export class CreateAccountCompanyComponent implements OnInit {
             break;
         }
       } catch (error) {
-        console.error('Błąd odczytu pliku:', error);
+        console.error('Error while reading the file:', error);
       }
     }
   }
@@ -100,6 +100,29 @@ export class CreateAccountCompanyComponent implements OnInit {
   }
 
   submitForm() {
+    if (!this.signUpForm.companyName ||
+      !this.signUpForm.companyAddress ||
+      !this.signUpForm.correspondenceAddress ||
+      !this.signUpForm.nip ||
+      !this.signUpForm.regon ||
+      !this.signUpForm.phone ||
+      !this.signUpForm.email ||
+      !this.signUpForm.krsCopy ||
+      !this.signUpForm.companyAgreement ||
+      !this.signUpForm.representativeFirstName ||
+      !this.signUpForm.representativeLastName ||
+      !this.signUpForm.representativeBirthDate ||
+      !this.signUpForm.representativeBirthPlace ||
+      !this.signUpForm.representativeAddress ||
+      !this.signUpForm.representativePesel ||
+      !this.signUpForm.representativePhone ||
+      !this.signUpForm.representativeEmail ||
+      !this.signUpForm.representativeIdNumber ||
+      !this.signUpForm.representativeIdScan) {
+      alert("Fill all required fields.")
+      return;
+    }
+
     let formData = new FormData();
     formData.append('companyName', this.signUpForm.companyName);
     formData.append('companyAddress', this.signUpForm.companyAddress);
