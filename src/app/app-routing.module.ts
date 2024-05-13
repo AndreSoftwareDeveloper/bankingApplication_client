@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { SetupDataModule } from './setup_data/setup_data.module';
 import { SetupDataComponent } from './setup_data/setup_data.component';
 import { CreateAccountComponent } from './create_account/create_account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -42,8 +41,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-    SetupDataModule
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]
 })

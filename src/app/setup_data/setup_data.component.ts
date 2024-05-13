@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 @Component({
-  selector: 'app-setup_data',
+  selector: 'app-setup-data',
   templateUrl: './setup_data.component.html'
 })
 
