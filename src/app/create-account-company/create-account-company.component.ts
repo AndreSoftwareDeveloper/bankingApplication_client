@@ -43,12 +43,14 @@ export class CreateAccountCompanyComponent implements OnInit {
       window.location.href = 'create_account';
   }
 
+
   entryKRS: number[] = [];
   companyAgreement: number[] = [];
   representativeIdScan: number[] = [];
 
-  async onFileChange(event: any, fieldName: string) {
-    const selectedFile = event.target.files[0];
+  async onFileChange(event: Event, fieldName: string) {    
+    const inputElement = event.target as HTMLInputElement;
+    const selectedFile = inputElement.files?.[0] as File;
     try {
       const fileAsByteArray = await this.readFileAsByteArray(selectedFile);
 
@@ -127,4 +129,8 @@ export class CreateAccountCompanyComponent implements OnInit {
       }
     );
   }
-}  
+}
+
+interface HTMLInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
