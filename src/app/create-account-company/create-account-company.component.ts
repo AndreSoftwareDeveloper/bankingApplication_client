@@ -43,30 +43,34 @@ export class CreateAccountCompanyComponent implements OnInit {
       window.location.href = 'create_account';
   }
 
-
   entryKRS: number[] = [];
   companyAgreement: number[] = [];
   representativeIdScan: number[] = [];
 
-  async onFileChange(event: Event, fieldName: string) {    
-    const inputElement = event.target as HTMLInputElement;
-    const selectedFile = inputElement.files?.[0] as File;
-    try {
-      const fileAsByteArray = await this.readFileAsByteArray(selectedFile);
+  async onFileChange(event: Event, fieldName: string) {
+    const input = event.target as HTMLInputElement;
 
-      switch (fieldName) {
-        case 'entryKRS':
-          this.entryKRS = fileAsByteArray;
-          break;
-        case 'companyAgreement':
-          this.companyAgreement = fileAsByteArray;
-          break;
-        case 'representativeIdScan':
-          this.representativeIdScan = fileAsByteArray;
-          break;
+    if (input.files) {
+      const file = input.files[0] as File;
+      try {
+        const fileAsByteArray = await this.readFileAsByteArray(file);
+
+        switch (fieldName) {
+          case 'entryKRS':
+            this.entryKRS = fileAsByteArray;
+            break;
+
+          case 'companyAgreement':
+            this.companyAgreement = fileAsByteArray;
+            break;
+
+          case 'representativeIdScan':
+            this.representativeIdScan = fileAsByteArray;
+            break;
+        }
+      } catch (error) {
+        console.error('Błąd odczytu pliku:', error);
       }
-    } catch (error) {
-      console.error('Błąd odczytu pliku:', error);
     }
   }
 
