@@ -130,7 +130,3 @@ export class CreateAccountCompanyComponent implements OnInit {
     );
   }
 }
-
-interface HTMLInputEvent extends Event {
-  target: HTMLInputElement & EventTarget;
-}
