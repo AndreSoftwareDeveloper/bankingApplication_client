@@ -32,14 +32,14 @@ export class CreateAccountCompanyComponent implements OnInit {
       representativeEmail: '',
       representativeIdNumber: '',
       representativeIdScan: '',
-      customerType: 'firma'
+      customerType: 'company'
     };
   }
 
   ngOnInit(): void { }
 
   onCustomerTypeChange() {
-    if (this.signUpForm.customerType === 'indywidualny')
+    if (this.signUpForm.customerType === 'individual')
       window.location.href = 'create_account';
   }
 

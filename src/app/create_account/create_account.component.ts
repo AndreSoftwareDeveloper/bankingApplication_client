@@ -38,7 +38,7 @@ export class CreateAccountComponent implements OnInit {
       idCardNumber: '',
       phoneNumber: '',
       email: '',
-      customerType: 'indywidualny'
+      customerType: 'individual'
     };
   }
 
@@ -110,7 +110,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onCustomerTypeChange() {
-    if (this.signUpForm.customerType === 'firma')
+    if (this.signUpForm.customerType === 'company')
       window.location.href = 'create_account_company';    
   }
 }
