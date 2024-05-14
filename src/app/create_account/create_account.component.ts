@@ -17,7 +17,7 @@ interface SignUpForm {
 }
 
 @Component({
-  selector: 'create_account',
+  selector: 'app-create-account',
   templateUrl: './create_account.component.html',
   styleUrls: ['./create_account.component.scss'],
 })
