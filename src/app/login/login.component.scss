@@ -23,7 +23,12 @@
   text-decoration: none;
 }
 
+ion-item {
+  width: 50%;
+}
+
 ion-button {
-  width: 16.2%;
+  width: 50%;
+  min-width: max-content;
   font-weight: 600;
 }
