@@ -55,7 +55,7 @@
           REGON:
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="number"  placeholder="111111111" [(ngModel)]="signUpForm.regon" required min="{{ '1910-01-01' }}"></ion-input>
+        <ion-input type="number" placeholder="111111111" [(ngModel)]="signUpForm.regon" required min="{{ '1910-01-01' }}"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -79,7 +79,7 @@
           A copy of the current entry in the KRS:
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="file" (change)="onFileChange($event, 'entryKRS')" ></ion-input>
+        <ion-input type="file" (change)="onFileChange($event, 'entryKRS')"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -87,7 +87,7 @@
           Company agreement:
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input  type="file" (change)="onFileChange($event, 'companyAgreement')" ></ion-input>
+        <ion-input type="file" (change)="onFileChange($event, 'companyAgreement')"></ion-input>
       </ion-item>
 
       <h2> Personal data of the company representative: </h2>
@@ -169,12 +169,16 @@
           ID scan:
           <ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="file" (change)="onFileChange($event, 'representativeIdScan')" ></ion-input>
+        <ion-input type="file" (change)="onFileChange($event, 'representativeIdScan')"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-button expand="full" (click)="submitForm()"> Wyślij </ion-button>
+        <ion-button expand="full" (click)="submitForm()"> SUBMIT </ion-button>
       </ion-item>
+
+      <ion-button expand="full" href="login">
+        BACK
+      </ion-button>
 
     </ion-list>
   </div>
