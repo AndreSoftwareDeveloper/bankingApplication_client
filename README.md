@@ -36,6 +36,6 @@ Open the project in Android Studio:
 `npx cap open android`  
 Android Studio will open the project. You can build and run the application on emulator, or physical device.
 
-Building the APK file:
+### Building the APK file:
 * In Android Studio, select __Build__ > __Build App Bundle(s) / APK(s)__ > __Build APK(s)__
 * Find generated APK file in __app/build/outputs/apk/release__
