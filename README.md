@@ -1,7 +1,7 @@
 # Banking Application Client
-Mobile app created using the Angular and Ionic frameworks.
-
-Provides functionality of creating an account as a natural or juridical person, as well as log into an existing account, order a domestic transfer, or check the transaction history
+Mobile app created using the Angular and Ionic frameworks.  
+Provides functionality of creating an account as a natural or juridical person, as well as log into an existing account, order a domestic transfer, or check the transaction history.  
+Monorepo contains two projects: source code of the application, and and actual build for Android.  
 
 ## Requirements
 * Node.js (version 20.x or higher)
