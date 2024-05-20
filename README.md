@@ -11,7 +11,7 @@ Provides functionality of creating an account as a natural or juridical person, 
 
 ## Installation
 Cloning a repository:  
-`git clone https://github.com/AndreSoftwareDeveloper/bankingApplication_Client`
+`git clone https://github.com/AndreSoftwareDeveloper/bankingApplication_Client`  
 `cd bankingApplication_Client`
 
 Installing dependencies:  
@@ -19,7 +19,7 @@ Installing dependencies:
 
 ## Startup:
 To run the application in developer mode, use the following command:  
-`ionic serve`
+`ionic serve`  
 The application will be available at http://localhost:8100/.
 
 ## Deployment
@@ -33,7 +33,7 @@ Sync your project with Capacitor:
 `npx cap sync`
 
 Open the project in Android Studio:  
-`npx cap open android`
+`npx cap open android`  
 Android Studio will open the project. You can build and run the application on emulator, or physical device.
 
 Building the APK file:
