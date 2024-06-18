@@ -20,7 +20,7 @@ Installing dependencies:
 
 ## Startup:
 To run the application in developer mode, use the following command:  
-`ionic serve`  
+`npm run build`  
 The application will be available at http://localhost:8100/.
 
 ## Deployment
