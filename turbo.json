@@ -1,8 +1,11 @@
 {
-  "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "pipeline": {
+      "run": {
+        "dependsOn": [ "^build" ],
+        "outputs": [ "dist/**" ]
+      }
     }
   }
 }
