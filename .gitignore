@@ -1,2 +1,11 @@
+# Turborepo
 .turbo
-*.vsidx
+
+# Visual Studio Code
+.vs/*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
