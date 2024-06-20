@@ -12,7 +12,10 @@
       "dependsOn": [ "^lint" ]
     },
     "start": {
-      "dependsOn": ["^start"]
+      "dependsOn": [ "^start" ]
+    },
+    "apk": {
+      "dependsOn":  [ "^apk" ]
     }
   }
-  }
+ }

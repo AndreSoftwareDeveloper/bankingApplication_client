@@ -14,6 +14,7 @@
     "build": "turbo build",
     "check-types": "tsc --noEmit",
     "lint": "turbo lint",
-    "start": "turbo start"
+    "start": "turbo start",
+    "apk": "turbo apk"
   }
 }

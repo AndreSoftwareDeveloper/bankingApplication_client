@@ -1,5 +1,5 @@
 {
-  "name": "clientApp",
+  "name": "bankingApplication_client",
   "integrations": {
     "capacitor": {}
   },

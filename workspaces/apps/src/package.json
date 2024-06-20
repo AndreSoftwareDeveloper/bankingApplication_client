@@ -10,7 +10,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "apk": "npx cap add android && ionic build --prod && npx cap sync && npx cap open android"
   },
   "private": true,
   "dependencies": {

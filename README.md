@@ -1,5 +1,5 @@
 # Banking Application Client
-Monorepo containing two projects: source code of the application, and actual build for Android.  
+Monorepo containing a source code of the application, and actual build for Android.  
 
 Mobile app created using the Angular and Ionic frameworks.  
 Provides functionality of creating an account as a natural or juridical person, as well as log into an existing account, order a domestic transfer, or check the transaction history.  
@@ -24,17 +24,8 @@ To run the application in developer mode, use the following command:
 The application will be available at http://localhost:8100/.
 
 ## Deployment
-Add an Android platform:  
-`npx cap add android`
-
-Build an application in production mode:  
-`ionic build --prod`
-
-Sync your project with Capacitor:  
-`npx cap sync`
-
-Open the project in Android Studio:  
-`npx cap open android`  
+To build the app in production mode, run the following command:
+`turbo apk`  
 Android Studio will open the project. You can build and run the application on emulator, or physical device.
 
 ### Building the APK file:
