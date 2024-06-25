@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../services/api.service';
 import { ModalController } from '@ionic/angular';
-import { DomesticTransferComponent } from '../domestic-transfer/domestic-transfer.component';
+
+import { ApiService } from '../services/api.service';
 import { NaturalPerson } from '../models/NaturalPerson';
+import { DomesticTransferComponent } from '../domestic-transfer/domestic-transfer.component';
 
 @Component({
   selector: 'app-my-account',
