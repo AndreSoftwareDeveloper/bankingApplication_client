@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { SetupDataComponent } from './setup_data/setup_data.component';
-import { CreateAccountComponent } from './create_account/create_account.component';
+
+import { SetupDataComponent } from './setup-data/setup_data.component';
 import { MyAccountComponent } from './my-account/my-account.component';
-import { CreateAccountCompanyComponent } from './create-account-company/create-account-company.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
@@ -19,12 +18,7 @@ const routes: Routes = [
 
   {
     path: 'create_account',
-    component: CreateAccountComponent
-  },
-
-  {
-    path: 'create_account_company',
-    component: CreateAccountCompanyComponent
+    loadChildren: () => import('./create-account/create-account.module').then(m => m.CreateAccountModule)
   },
 
   {

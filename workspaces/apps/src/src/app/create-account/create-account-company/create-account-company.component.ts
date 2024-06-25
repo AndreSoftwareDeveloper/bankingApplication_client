@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -40,7 +40,7 @@ export class CreateAccountCompanyComponent implements OnInit {
 
   onCustomerTypeChange() {
     if (this.signUpForm.customerType === 'individual')
-      window.location.href = 'create_account';
+      window.location.href = 'create_account/individual';
   }
 
   entryKRS: number[] = [];

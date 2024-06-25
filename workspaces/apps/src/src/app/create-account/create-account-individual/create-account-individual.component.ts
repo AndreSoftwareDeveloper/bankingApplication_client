@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
 import { DatePipe } from '@angular/common';
-import { NaturalPerson } from '../models/NaturalPerson';
+
+import { NaturalPerson } from '../../models/NaturalPerson';
+import { ApiService } from '../../services/api.service';
 
 interface SignUpForm {
   firstName: string;
@@ -17,11 +18,11 @@ interface SignUpForm {
 }
 
 @Component({
-  selector: 'app-create-account',
-  templateUrl: './create_account.component.html',
-  styleUrls: ['./create_account.component.scss'],
+  selector: 'app-create-account-individual',
+  templateUrl: './create-account-individual.component.html',
+  styleUrls: ['./create-account-individual.component.scss'],
 })
-export class CreateAccountComponent implements OnInit {
+export class CreateAccountIndividualComponent implements OnInit {
   responseData: string | undefined;
   errorString: string | undefined;
   signUpForm: SignUpForm;
@@ -43,6 +44,11 @@ export class CreateAccountComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  onCustomerTypeChange() {
+    if (this.signUpForm.customerType === 'company')
+      window.location.href = 'create_account/company';
+  }
 
   fetchData(): void {
     this.apiService.getData().subscribe(
@@ -107,10 +113,5 @@ export class CreateAccountComponent implements OnInit {
         alert("An error occured while creating an account:\n" + JSON.stringify(error));
       }
     );
-  }
-
-  onCustomerTypeChange() {
-    if (this.signUpForm.customerType === 'company')
-      window.location.href = 'create_account_company';    
-  }
+  }  
 }
