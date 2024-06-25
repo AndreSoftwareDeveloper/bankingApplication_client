@@ -143,7 +143,6 @@ export class CreateAccountCompanyComponent implements OnInit {
     formData.append('representativeIdScan', new Blob([new Uint8Array(this.representativeIdScan)], { type: 'application/octet-stream' }));
     
     const headers = new HttpHeaders();
-    headers.set('Content-Type', 'multipart/form-data');
 
     this.apiService.postJuridicalPerson(formData, headers).subscribe(
       () => {
