@@ -2,24 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { ApiService } from '../services/api.service';
-
-interface Customer {
-  address: string;
-  birthDate: string;
-  birthPlace: string;
-  customerNumber: number;
-  email: string;
-  firstName: string;
-  id: number;
-  idCardNumber: string;
-  lastName: string;
-  nip: string | null;
-  password: string;
-  pesel: string;
-  phoneNumber: string;
-  regon: string | null;
-  verificationToken: number;
-}
+import { Customer } from '../models/Customer';
 
 interface SignInForm {
   customerNumber: number | null;
@@ -38,7 +21,6 @@ export class LoginComponent {
   showBackButton: boolean = false;
   password: string | null = null;
   customer!: Customer;
-
 
   constructor(private apiService: ApiService, private router: Router) {
     this.signInForm = {

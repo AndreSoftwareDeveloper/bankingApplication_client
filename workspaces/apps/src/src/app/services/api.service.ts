@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
+import { NaturalPerson } from '../models/NaturalPerson';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +17,7 @@ export class ApiService {
     return this.http.get(this.endpoint_naturalPerson);
   }
 
-  findCustomerNumber(customerNumber: number): Observable<any> {
+  findCustomerNumber(customerNumber: number): Observable<Object> {
     const response_naturalPerson = this.http.get(this.endpoint_naturalPerson + "/customerNumber/" + customerNumber);
 
     return this.checkResponseCode(response_naturalPerson).pipe(
@@ -101,7 +103,7 @@ export class ApiService {
     });
   }
 
-  appendToTransactionsHistory(transaction: any) {
+  appendToTransactionsHistory(transaction: FormData) {
     const endpoint = 'https://localhost:7045/api/Account';    
     return this.http.put(endpoint, transaction);
   }

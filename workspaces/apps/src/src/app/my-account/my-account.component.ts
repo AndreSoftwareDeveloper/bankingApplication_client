@@ -22,7 +22,6 @@ export class MyAccountComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       if (window.history.state.customer) 
         this.customer = window.history.state.customer;
-        console.log(this.customer)
     });
   }
 
@@ -30,6 +29,7 @@ export class MyAccountComponent implements OnInit {
     const modal = await this.modalController.create({
       component: DomesticTransferComponent
     });
+
     await modal.present();
     const { data } = await modal.onDidDismiss();
 
@@ -50,9 +50,9 @@ export class MyAccountComponent implements OnInit {
 
     this.apiService.appendToTransactionsHistory(transactionData)
       .subscribe((response) => {
-        console.log('Odpowiedź z API:', response);
+        console.log('Response from API: ', response);
       }, (error) => {
-        console.error('Błąd w API:', error);
+        console.error('Error in API: ', error);
       });
   }
 }
