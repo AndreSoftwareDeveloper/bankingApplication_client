@@ -1,4 +1,4 @@
-export class JuridicalPerson {
+export interface JuridicalPerson {
   companyAddress: string | undefined;
   companyAgreement: string | undefined;
   companyName: string | undefined;
