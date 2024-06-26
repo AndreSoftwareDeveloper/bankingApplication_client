@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { NaturalPerson } from '../models/NaturalPerson';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +28,7 @@ export class ApiService {
     );
   }
 
-  checkResponseCode(response: Observable<any>): Observable<number> {
+  checkResponseCode(response: Observable<Object>): Observable<number> {
     return response.pipe(
       map(() => 200),
       catchError(() => of(404))
