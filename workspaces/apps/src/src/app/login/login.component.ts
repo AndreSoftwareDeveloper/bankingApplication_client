@@ -58,7 +58,7 @@ export class LoginComponent {
     if (this.customer.password == this.password)
       this.redirectToLoggedPage(this.customer);
     else
-      alert("Enter a valid customer number.")    
+      alert("Enter a valid password.")    
   }
 
   redirectToLoggedPage(customer: Customer): void {
