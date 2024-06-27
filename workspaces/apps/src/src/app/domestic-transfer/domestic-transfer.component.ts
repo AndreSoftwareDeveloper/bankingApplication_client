@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./domestic-transfer.component.scss'],
 })
 export class DomesticTransferComponent implements OnInit {
-  formData = {
+  domesticTransferData = {
     receiverName: '',
     receiverAccountNumber: '',
     title: '',
@@ -21,7 +21,7 @@ export class DomesticTransferComponent implements OnInit {
     }
 
     submitForm() {
-      this.modalController.dismiss(this.formData);
+      this.modalController.dismiss(this.domesticTransferData);
     }
 
     closeModal() {

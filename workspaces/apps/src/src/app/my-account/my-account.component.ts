@@ -34,7 +34,7 @@ export class MyAccountComponent implements OnInit {
     const { data } = await modal.onDidDismiss();
 
     var transactionData = new FormData();
-    transactionData.append("Date", new Date(2022, 3, 15).toLocaleDateString()); //TODO
+    transactionData.append("Date", data.date);
     transactionData.append("Amount", data.amount);
     transactionData.append("Currency", 'PLN');
     transactionData.append("InitiatorAccountNumber", '000000-0200001198');
