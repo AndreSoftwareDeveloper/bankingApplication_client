@@ -141,10 +141,8 @@ export class CreateAccountCompanyComponent implements OnInit {
     formData.append('representativeEmail', this.signUpForm.representativeEmail);
     formData.append('representativeIdNumber', this.signUpForm.representativeIdNumber);
     formData.append('representativeIdScan', new Blob([new Uint8Array(this.representativeIdScan)], { type: 'application/octet-stream' }));
-    
-    const headers = new HttpHeaders();
 
-    this.apiService.postJuridicalPerson(formData, headers).subscribe(
+    this.apiService.postJuridicalPerson(formData).subscribe(
       () => {
         alert("Account has been successfully created. Follow instructions in email.")
       },

@@ -35,7 +35,7 @@ export class ApiService {
     );
   }
 
-  postNaturalPerson(formData: object) {
+  postNaturalPerson(formData: FormData) {
     let errorMessage: string = "Internal server error.";
     return this.http.post(this.endpoint_naturalPerson, formData).pipe(
       map((response) => {
@@ -59,27 +59,21 @@ export class ApiService {
     );
   }
 
-  postJuridicalPerson(formData: object, headers: HttpHeaders) {
+  postJuridicalPerson(formData: FormData): Observable<any> {
     let errorMessage: string = "Internal server error.";
-    return this.http.post('https://localhost:7045/api/JuridicalPerson', formData, {
-      headers: headers
-    }).pipe(
+    return this.http.post('https://localhost:7045/api/JuridicalPerson', formData).pipe(
       map((response) => {
         return response;
       }),
       catchError((httpError) => {
         if (httpError.error === 'email')
-          errorMessage = 'This email is already being in used.';
-
+          errorMessage = 'This email is already being used.';
         else if (httpError.error === 'company name')
           errorMessage = 'This company name already exists.';
-
         else if (httpError.error === 'phone')
-          errorMessage = 'This phone number is already being in used.';
-
+          errorMessage = 'This phone number is already being used.';
         else if (httpError.error === 'regon')
           errorMessage = 'This REGON already exists.';
-
         else if (httpError.error === 'NIP')
           errorMessage = 'This NIP already exists.';
 
