@@ -38,7 +38,9 @@ export class SetupDataComponent implements OnInit {
           () => {
             alert("Data has been set successfully.");
           },
-          () => {}
+          () => {
+            alert("Internal server error.")
+          }
       ); 
     }      
   }

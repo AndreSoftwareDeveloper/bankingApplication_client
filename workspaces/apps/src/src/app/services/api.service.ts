@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
+
+import { Customer } from '../models/Customer';
 
 @Injectable({
   providedIn: 'root',
@@ -15,20 +17,20 @@ export class ApiService {
     return this.http.get(this.endpoint_naturalPerson);
   }
 
-  findCustomerNumber(customerNumber: number): Observable<Object> {
-    const response_naturalPerson = this.http.get(this.endpoint_naturalPerson + "/customerNumber/" + customerNumber);
+  findCustomerNumber(customerNumber: number): Observable<Customer> {
+    const response_naturalPerson = this.http.get<Customer>(this.endpoint_naturalPerson + "/customerNumber/" + customerNumber);
 
-    return this.checkResponseCode(response_naturalPerson).pipe(
+    return this.checkNaturalPersonResponseCode(response_naturalPerson).pipe(
       switchMap((responseCode: number) => {
         if (responseCode === 200)
           return response_naturalPerson;
         else
-          return this.http.get(this.endpoint_juridicalPerson + "/customerNumber/" + customerNumber);        
+          return this.http.get<Customer>(this.endpoint_juridicalPerson + "/customerNumber/" + customerNumber);        
       })
     );
   }
 
-  checkResponseCode(response: Observable<Object>): Observable<number> {
+  checkNaturalPersonResponseCode(response: Observable<Customer>): Observable<number> {
     return response.pipe(
       map(() => 200),
       catchError(() => of(404))

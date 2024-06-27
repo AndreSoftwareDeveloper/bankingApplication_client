@@ -40,7 +40,6 @@ export class LoginComponent {
       (data) => {   //when server response is 200        
         this.showBackButton = true;
         this.customer = data as Customer;
-        console.log(data);
       },
       () => {       //when server response is 404
         alert("Enter a valid customer number.")
