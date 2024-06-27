@@ -68,13 +68,13 @@ export class ApiService {
       catchError((httpError) => {
         if (httpError.error === 'email')
           errorMessage = 'This email is already being used.';
-        else if (httpError.error === 'company name')
+        else if (httpError.error === 'companyName')
           errorMessage = 'This company name already exists.';
         else if (httpError.error === 'phone')
           errorMessage = 'This phone number is already being used.';
         else if (httpError.error === 'regon')
           errorMessage = 'This REGON already exists.';
-        else if (httpError.error === 'NIP')
+        else if (httpError.error === 'nip')
           errorMessage = 'This NIP already exists.';
 
         return throwError(errorMessage);
