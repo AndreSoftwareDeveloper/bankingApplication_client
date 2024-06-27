@@ -53,22 +53,22 @@ export class SetupDataComponent implements OnInit {
     const isPasswordMatch = password === retypePassword;
     const isValidPassword = password.length >= 8 && passwordRegex.test(password);
 
-    if (!isValidNip) {
+    if ( !isValidNip ) {
       alert("NIP must be a 10-digit value.");
       return false;
     }
 
-    if (!isValidRegon) {
+    if ( !isValidRegon ) {
       alert("REGON must be a 9 or 14-digit value.");
       return false;
     }
 
-    if (!isPasswordMatch) {
+    if ( !isPasswordMatch ) {
       alert("Passwords must be the same.");
       return false;
     }
 
-    if (!isValidPassword) {
+    if ( !isValidPassword ) {
       alert("The password must be at least 8 characters long and contain at least one lowercase letter, an uppercase letter, a number, and a special character.");
       return false;
     }

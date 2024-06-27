@@ -80,14 +80,14 @@ export class CreateAccountIndividualComponent implements OnInit {
     const birthDate = new Date(this.signUpForm.birthDate);
     const minDate = new Date('1910-01-01');
     const maxDate = new Date();
+    const pesel = parseInt(this.signUpForm.pesel, 10);
+    const minPesel = parseInt('0001012341', 10);
 
     if (birthDate < minDate || birthDate > maxDate) {
       alert('Enter a valid birthdate.');
       return;
     }
-
-    const pesel = parseInt(this.signUpForm.pesel, 10);
-    const minPesel = parseInt('0001012341', 10);
+    
     if (pesel < minPesel) {
       alert("Enter a valid PESEL.");
       return;

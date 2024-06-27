@@ -16,9 +16,7 @@ export class DomesticTransferComponent implements OnInit {
   };
 
   constructor(private modalController: ModalController) { }
-    ngOnInit(): void {
-        throw new Error('Method not implemented.');
-    }
+    ngOnInit(): void {}
 
     submitForm() {
       this.modalController.dismiss(this.domesticTransferData);
