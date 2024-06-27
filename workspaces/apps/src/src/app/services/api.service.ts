@@ -73,9 +73,9 @@ export class ApiService {
         else if (httpError.error === 'phone')
           errorMessage = 'This phone number is already being used.';
         else if (httpError.error === 'regon')
-          errorMessage = 'This REGON already exists.';
+          errorMessage = 'Account with this REGON already exists.';
         else if (httpError.error === 'nip')
-          errorMessage = 'This NIP already exists.';
+          errorMessage = 'Account with this NIP already exists.';
 
         return throwError(errorMessage);
       })
