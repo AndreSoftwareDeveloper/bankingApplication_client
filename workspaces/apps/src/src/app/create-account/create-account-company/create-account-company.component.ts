@@ -121,6 +121,36 @@ export class CreateAccountCompanyComponent implements OnInit {
       return;
     }
 
+    const birthDate = new Date(this.signUpForm.representativeBirthDate);
+    const minDate = new Date('1910-01-01');
+    const maxDate = new Date();
+
+    const pesel = parseInt(this.signUpForm.representativePesel, 10);
+    const minPesel = parseInt('0001012341', 10);
+
+    const nip = this.signUpForm.nip;
+    const regon = this.signUpForm.regon;
+
+    if (birthDate < minDate || birthDate > maxDate) {
+      alert('Enter a valid birthdate.');
+      return;
+    }
+    
+    if (pesel < minPesel) {
+      alert("Enter a valid PESEL.");
+      return;
+    }
+    
+    if (nip >= 1000000000 && nip <= 9999999999) {
+      alert("NIP must be a 10-digit value.");
+      return;
+    }
+    
+    if ((regon >= 100000000 && regon <= 999999999) || (regon >= 10000000000000 && regon <= 99999999999999)) {
+      alert("REGON must be a 9 or 14-digit value.");
+      return;
+    }
+
     let formData = new FormData();
     formData.append('companyName', this.signUpForm.companyName);
     formData.append('companyAddress', this.signUpForm.companyAddress);
