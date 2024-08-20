@@ -11,7 +11,8 @@ import { Customer } from '../models/Customer';
 export class ApiService {
   private endpoint_naturalPerson = 'https://localhost:7045/api/NaturalPerson';
   private endpoint_juridicalPerson = 'https://localhost:7045/api/JuridicalPerson';
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {}
 
   getData() {
     return this.http.get(this.endpoint_naturalPerson);
@@ -63,6 +64,7 @@ export class ApiService {
 
   postJuridicalPerson(formData: FormData): Observable<any> {
     let errorMessage: string = "Internal server error.";
+
     return this.http.post('https://localhost:7045/api/JuridicalPerson', formData).pipe(
       map((response) => {
         return response;
@@ -70,12 +72,16 @@ export class ApiService {
       catchError((httpError) => {
         if (httpError.error === 'email')
           errorMessage = 'This email is already being used.';
+
         else if (httpError.error === 'companyName')
           errorMessage = 'This company name already exists.';
+
         else if (httpError.error === 'phone')
           errorMessage = 'This phone number is already being used.';
+
         else if (httpError.error === 'regon')
           errorMessage = 'Account with this REGON already exists.';
+
         else if (httpError.error === 'nip')
           errorMessage = 'Account with this NIP already exists.';
 
