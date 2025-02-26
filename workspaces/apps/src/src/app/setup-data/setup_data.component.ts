@@ -49,7 +49,8 @@ export class SetupDataComponent implements OnInit {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
 
     const isValidNip = nip >= 1000000000 && nip <= 9999999999; //The NIP number must be a 10-digit number
-    const isValidRegon = (regon >= 100000000 && regon <= 999999999) || (regon >= 10000000000000 && regon <= 99999999999999); //The REGON number must be a 9 or 14-digit number
+    const isValidRegon = (regon >= 100000000 && regon <= 999999999)
+                          || (regon >= 10000000000000 && regon <= 99999999999999); //The REGON number must be a 9 or 14-digit number
     const isPasswordMatch = password === retypePassword;
     const isValidPassword = password.length >= 8 && passwordRegex.test(password);
 

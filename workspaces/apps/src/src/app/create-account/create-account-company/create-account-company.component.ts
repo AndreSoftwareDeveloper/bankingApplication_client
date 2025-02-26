@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
-
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -76,28 +74,32 @@ export class CreateAccountCompanyComponent implements OnInit {
   }
 
   readFileAsByteArray(file: File): Promise<number[]> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target) {
-          const arrayBuffer = event.target.result as ArrayBuffer;
-          const uintArray = new Uint8Array(arrayBuffer);
-          const byteArray: number[] = [];
+    return new Promise(
+      (resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          if (event.target) {
+            const arrayBuffer = event.target.result as ArrayBuffer;
+            const uintArray = new Uint8Array(arrayBuffer);
+            const byteArray: number[] = [];
 
-          uintArray.forEach((value) => {
-            byteArray.push(value);
-          });
+            function addValue(this: any, value: number) {
+              this.push(value);
+            }
 
-          resolve(byteArray);
-        }
-      };
+            uintArray.forEach(addValue, byteArray);
 
-      reader.onerror = (error) => {
-        reject(error);
-      };
+            resolve(byteArray);
+          }
+        };
 
-      reader.readAsArrayBuffer(file);
-    });
+        reader.onerror = (error) => {
+          reject(error);
+        };
+
+        reader.readAsArrayBuffer(file);
+      }
+    );
   }
 
   submitForm() {
@@ -144,7 +146,10 @@ export class CreateAccountCompanyComponent implements OnInit {
       return;
     }
     
-    if ( !( (regon >= 100000000 && regon <= 999999999) || (regon >= 10000000000000 && regon <= 99999999999999) ) ) {
+    if (!(
+      (regon >= 100000000 && regon <= 999999999)
+      || (regon >= 10000000000000 && regon <= 99999999999999)
+    )) {
       alert("REGON must be a 9 or 14-digit value.");
       return;
     }

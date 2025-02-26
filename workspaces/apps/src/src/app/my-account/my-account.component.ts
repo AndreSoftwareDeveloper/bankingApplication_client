@@ -14,7 +14,8 @@ import { DomesticTransferComponent } from '../domestic-transfer/domestic-transfe
 export class MyAccountComponent implements OnInit {
   customer: NaturalPerson | undefined;
 
-  constructor(public apiService: ApiService, //I'm not sure it is ok to be public for stuff like that
+  constructor(
+    public apiService: ApiService, //I'm not sure it is ok to be public for stuff like that
     private activatedRoute: ActivatedRoute,
     private modalController: ModalController) { }
 
