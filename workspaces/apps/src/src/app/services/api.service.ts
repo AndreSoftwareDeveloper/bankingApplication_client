@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
@@ -9,25 +10,31 @@ import { Customer } from '../models/Customer';
   providedIn: 'root',
 })
 export class ApiService {
-  private endpoint_naturalPerson = 'https://localhost:7045/api/NaturalPerson';
-  private endpoint_juridicalPerson = 'https://localhost:7045/api/JuridicalPerson';
+  private base_endpoint = 'https://localhost:7045/api/';
+
+  private endpoints = {
+    account: this.base_endpoint + "Account",
+    naturalPerson: this.base_endpoint + "NaturalPerson",
+    juridicalPerson: this.base_endpoint + "JuridicalPerson"
+  }
 
   constructor(private http: HttpClient) {}
 
   getData() {
-    return this.http.get(this.endpoint_naturalPerson);
+    return this.http.get(this.endpoints.naturalPerson);
   }
 
   findCustomerNumber(customerNumber: number): Observable<Customer> {
-    const response_naturalPerson = this.http.get<Customer>(this.endpoint_naturalPerson + "/customerNumber/" + customerNumber);
+    const response_naturalPerson = this.http.get<Customer>(this.endpoints.naturalPerson + "/customerNumber/" + customerNumber);
 
     return this.checkNaturalPersonResponseCode(response_naturalPerson).pipe(
-      switchMap((responseCode: number) => {
-        if (responseCode === 200)
-          return response_naturalPerson;
-        else
-          return this.http.get<Customer>(this.endpoint_juridicalPerson + "/customerNumber/" + customerNumber);        
-      })
+      switchMap(
+        (responseCode: number) => {
+          if (responseCode === 200)
+            return response_naturalPerson;        
+          return this.http.get<Customer>(this.endpoints.juridicalPerson + "/customerNumber/" + customerNumber);
+        }
+      )
     );
   }
 
@@ -39,11 +46,13 @@ export class ApiService {
   }
 
   postNaturalPerson(formData: FormData) {
-    let errorMessage: string = "Internal server error.";
-    return this.http.post(this.endpoint_naturalPerson, formData).pipe(
-      map((response) => {
-        return response;
-      }),
+    let errorMessage: string = "Internal server error";
+    return this.http.post(this.endpoints.naturalPerson, formData).pipe(
+      map(
+        (response) => {
+          return response;
+        }
+      ),
       catchError((httpError) => {
         if (httpError.error === 'phone')
           errorMessage = 'This phone number already exists.';
@@ -65,28 +74,32 @@ export class ApiService {
   postJuridicalPerson(formData: FormData): Observable<any> {
     let errorMessage: string = "Internal server error.";
 
-    return this.http.post('https://localhost:7045/api/JuridicalPerson', formData).pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError((httpError) => {
-        if (httpError.error === 'email')
-          errorMessage = 'This email is already being used.';
+    return this.http.post(this.endpoints.juridicalPerson, formData).pipe(
+      map(
+        (response) => {
+          return response;
+        }
+      ),
+      catchError(
+        (httpError) => {
+          if (httpError.error === 'email')
+            errorMessage = 'This email is already being used.';
 
-        else if (httpError.error === 'companyName')
-          errorMessage = 'This company name already exists.';
+          else if (httpError.error === 'companyName')
+            errorMessage = 'This company name already exists.';
 
-        else if (httpError.error === 'phone')
-          errorMessage = 'This phone number is already being used.';
+          else if (httpError.error === 'phone')
+            errorMessage = 'This phone number is already being used.';
 
-        else if (httpError.error === 'regon')
-          errorMessage = 'Account with this REGON already exists.';
+          else if (httpError.error === 'regon')
+            errorMessage = 'Account with this REGON already exists.';
 
-        else if (httpError.error === 'nip')
-          errorMessage = 'Account with this NIP already exists.';
+          else if (httpError.error === 'nip')
+            errorMessage = 'Account with this NIP already exists.';
 
-        return throwError(errorMessage);
-      })
+          return throwError(errorMessage);
+        }
+      )
     );
   }
 
@@ -98,13 +111,15 @@ export class ApiService {
       regon: +regon
     };
 
-    return this.http.patch(this.endpoint_naturalPerson, updateData, {
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return this.http.patch(
+      this.endpoints.naturalPerson, updateData,
+      {
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   }
 
   appendToTransactionsHistory(transaction: FormData) {
-    const endpoint = 'https://localhost:7045/api/Account';    
-    return this.http.put(endpoint, transaction);
+    return this.http.put(this.endpoints.account, transaction);
   }
 }
