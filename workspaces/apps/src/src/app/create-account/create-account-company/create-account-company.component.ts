@@ -83,7 +83,7 @@ export class CreateAccountCompanyComponent implements OnInit {
             const uintArray = new Uint8Array(arrayBuffer);
             const byteArray: number[] = [];
 
-            function addValue(this: any, value: number) {
+            function addValue(this: number[], value: number) {
               this.push(value);
             }
 
@@ -162,8 +162,20 @@ export class CreateAccountCompanyComponent implements OnInit {
     formData.append('regon', this.signUpForm.regon);
     formData.append('phone', this.signUpForm.phone);
     formData.append('email', this.signUpForm.email);
-    formData.append('entryKRS', new Blob([new Uint8Array(this.entryKRS)], { type: 'application/octet-stream' }));
-    formData.append('companyAgreement', new Blob([new Uint8Array(this.companyAgreement)], { type: 'application/octet-stream' }));
+    formData.append(
+      'entryKRS',
+      new Blob(
+        [new Uint8Array(this.entryKRS)],
+        { type: 'application/octet-stream' }
+      )
+    );
+    formData.append(
+      'companyAgreement',
+      new Blob(
+        [new Uint8Array(this.companyAgreement)],
+        { type: 'application/octet-stream' }
+      )
+    );
     formData.append('representativeFirstName', this.signUpForm.representativeFirstName);
     formData.append('representativeLastName', this.signUpForm.representativeLastName);
     formData.append('representativeBirthDate', this.signUpForm.representativeBirthDate);
@@ -173,7 +185,13 @@ export class CreateAccountCompanyComponent implements OnInit {
     formData.append('representativePhone', this.signUpForm.representativePhone);
     formData.append('representativeEmail', this.signUpForm.representativeEmail);
     formData.append('representativeIdNumber', this.signUpForm.representativeIdNumber);
-    formData.append('representativeIdScan', new Blob([new Uint8Array(this.representativeIdScan)], { type: 'application/octet-stream' }));
+    formData.append(
+      'representativeIdScan',
+      new Blob(
+        [new Uint8Array(this.representativeIdScan)],
+        { type: 'application/octet-stream' }
+      )
+    );
 
     this.apiService.postJuridicalPerson(formData).subscribe(
       () => {
